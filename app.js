@@ -64,3 +64,13 @@ function sortearAmigo() {
     // Exibir o amigo sorteado
     resultado.innerHTML = `O amigo sorteado foi: <strong>${amigoSorteado}</strong>`;
 }
+
+// Função para remover um amigo e limpar o sorteio
+function removerAmigo(index) {
+  amigos.splice(index, 1); // Remove o amigo do array
+  atualizarListaAmigos(); // Atualiza a lista de amigos
+
+  // Limpar o resultado do sorteio
+  const resultado = document.getElementById("resultado");
+  resultado.innerHTML = ""; // Limpa o conteúdo exibido sobre o sorteio
+}
