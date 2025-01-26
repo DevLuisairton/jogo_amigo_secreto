@@ -35,12 +35,12 @@ Um aplicativo simples e divertido para organizar sorteios de amigo secreto. Com 
 
 ## 🗂️ Como Usar
 amigo-secreto/
-├── assets/                # Imagens e ícones
+├── assets/               
 │   ├── amigo-secreto.png
 │   ├── play_circle_outline.png
 │   ├── logo One.png
-├── style.css              # Estilização da aplicação
-├── app.js                 # Lógica e interatividade
-├── index.html             # Estrutura HTML principal
-└── README.md              # Documentação do projeto
+├── style.css              
+├── app.js                 
+├── index.html             
+└── README.md              
 
