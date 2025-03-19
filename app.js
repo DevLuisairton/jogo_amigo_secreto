@@ -1,6 +1,12 @@
 // 1 - Primeiro passo: Declarar um array para armazenar os nomes dos amigos
 let amigos = [];
 
+// Função para tocar um som ao adicionar um nome
+function tocarSom() {
+    const audio = new Audio("sounds/add-sound.mp3"); // Caminho para o arquivo de som
+    audio.play().catch(error => console.error("Erro ao reproduzir som:", error));
+}
+
 // 2 - Segundo passo: Função para adicionar amigos
 function adicionarAmigo() {
     const input = document.getElementById("amigo");
@@ -15,6 +21,9 @@ function adicionarAmigo() {
     // Adicionar o nome ao array e limpar o campo de entrada
     amigos.push(nome);
     input.value = "";
+
+    // Tocar o som de adição
+    tocarSom();
 
     // Atualizar a lista na interface
     atualizarListaAmigos();
@@ -67,10 +76,26 @@ function sortearAmigo() {
 
 // Função para remover um amigo e limpar o sorteio
 function removerAmigo(index) {
-  amigos.splice(index, 1); // Remove o amigo do array
-  atualizarListaAmigos(); // Atualiza a lista de amigos
+    amigos.splice(index, 1); // Remove o amigo do array
+    atualizarListaAmigos(); // Atualiza a lista de amigos
 
-  // Limpar o resultado do sorteio
-  const resultado = document.getElementById("resultado");
-  resultado.innerHTML = ""; // Limpa o conteúdo exibido sobre o sorteio
+    // Limpar o resultado do sorteio
+    const resultado = document.getElementById("resultado");
+    resultado.innerHTML = ""; // Limpa o conteúdo exibido sobre o sorteio
+}
+
+function tocarSom() {
+    const context = new AudioContext();
+    const oscillator = context.createOscillator();
+    const gainNode = context.createGain();
+
+    oscillator.type = "triangle"; // Tipo de onda (sine, square, triangle, sawtooth)
+    oscillator.frequency.setValueAtTime(220, context.currentTime); // Frequência em Hz (440 Hz = Lá)
+    gainNode.gain.setValueAtTime(0.3, context.currentTime); // Volume
+
+    oscillator.connect(gainNode);
+    gainNode.connect(context.destination);
+
+    oscillator.start();
+    oscillator.stop(context.currentTime + 0.1); // Duração do som em segundos
 }
